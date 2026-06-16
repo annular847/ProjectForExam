@@ -1,82 +1,100 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" id="html-root">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>WorkoutFlow | Тренировки для любого возраста</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>WorkoutFlow | Тренировки</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            /* Светлая тема (по умолчанию) */
+            --bg-primary: #FBFBF7;
+            --bg-secondary: #E8F3E8;
+            --bg-card: #FFFFFF;
+            --bg-hero: #E8F3E8;
+            --bg-tips: #FDF3D0;
+            --bg-footer: #4A7C3F;
+            --bg-header: rgba(255,255,255,0.96);
+            --text-primary: #2D3E2B;
+            --text-secondary: #5A6E55;
+            --text-footer: #E8F3E8;
+            --border-color: #C5E0B4;
+            --shadow-color: rgba(0,0,0,0.05);
+            --green-main: #6B9E5A;
+            --green-deep: #4A7C3F;
+            --yellow-accent: #F4C542;
+            --yellow-soft: #FDF3D0;
+            --green-light: #E8F3E8;
+        }
+
+        /* Тёмная тема */
+        [data-theme="dark"] {
+            --bg-primary: #1A2A1E;
+            --bg-secondary: #2A3F2E;
+            --bg-card: #2D3E32;
+            --bg-hero: #2A3F2E;
+            --bg-tips: #3D4F3A;
+            --bg-footer: #0F1A12;
+            --bg-header: rgba(26, 42, 30, 0.96);
+            --text-primary: #E8F3E8;
+            --text-secondary: #B8CFB0;
+            --text-footer: #C5E0B4;
+            --border-color: #4A6B4F;
+            --shadow-color: rgba(0,0,0,0.2);
+            --green-main: #7FB86A;
+            --green-deep: #8FCC78;
+            --yellow-accent: #E8B830;
+            --yellow-soft: #3D4F3A;
+            --green-light: #2A3F2E;
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background: #FBFBF7;
-            color: #2D3E2B;
+            background: var(--bg-primary);
+            color: var(--text-primary);
             line-height: 1.5;
             scroll-behavior: smooth;
+            transition: background 0.3s ease, color 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
 
-        /* Цветовая палитра */
-        :root {
-            --green-light: #E8F3E8;
-            --green-soft: #C5E0B4;
-            --green-main: #6B9E5A;
-            --green-deep: #4A7C3F;
-            --yellow-soft: #FDF3D0;
-            --yellow-warm: #F5E2A1;
-            --yellow-accent: #F4C542;
-            --sand: #F9F5EB;
-            --warm-gray: #F5F0E6;
-            --text-dark: #2D3E2B;
-            --text-soft: #5A6E55;
-        }
-
+        /* Шапка */
         header {
-            background: rgba(255, 255, 255, 0.96);
+            background: var(--bg-header);
             backdrop-filter: blur(8px);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.03);
             position: sticky;
             top: 0;
             z-index: 100;
-            border-bottom: 1px solid var(--green-soft);
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+            transition: background 0.3s ease;
         }
-
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 18px 0;
             flex-wrap: wrap;
-            gap: 16px;
+            gap: 12px;
         }
-
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 28px;
+            gap: 8px;
+            font-size: 22px;
             font-weight: 800;
         }
-
         .logo-icon {
             background: var(--green-main);
-            padding: 8px 12px;
-            border-radius: 20px;
+            padding: 6px 10px;
+            border-radius: 16px;
             color: white;
-            font-size: 20px;
+            font-size: 16px;
         }
-
         .logo-text {
             background: linear-gradient(135deg, var(--green-deep), var(--yellow-accent));
             -webkit-background-clip: text;
@@ -84,327 +102,255 @@
             color: transparent;
         }
 
-        .nav-links {
+        .nav-controls {
             display: flex;
-            gap: 32px;
-            list-style: none;
+            align-items: center;
+            gap: 12px;
             flex-wrap: wrap;
         }
 
+        .nav-links {
+            display: flex;
+            gap: 18px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
         .nav-links a {
             text-decoration: none;
             font-weight: 600;
-            color: var(--text-dark);
-            transition: 0.2s;
+            color: var(--text-primary);
+            font-size: 14px;
+            padding: 6px 0;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--green-main); }
+
+        /* Кнопки управления */
+        .ctrl-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 8px 14px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .ctrl-btn:hover {
+            background: var(--green-main);
+            color: white;
         }
 
-        .nav-links a:hover {
-            color: var(--green-main);
+        .lang-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 6px 10px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .lang-btn.active {
+            background: var(--green-main);
+            color: white;
+            border-color: var(--green-main);
         }
 
         .btn {
             display: inline-block;
             background: var(--green-main);
             color: white;
-            padding: 12px 28px;
+            padding: 14px 28px;
             border-radius: 60px;
             font-weight: 700;
             text-decoration: none;
-            transition: 0.25s;
             border: none;
             cursor: pointer;
-            box-shadow: 0 6px 14px rgba(107, 158, 90, 0.25);
+            font-size: 16px;
+            width: 100%;
+            text-align: center;
+            transition: all 0.2s;
         }
-
         .btn:hover {
-            background: var(--green-deep);
             transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(107, 158, 90, 0.3);
         }
-
         .btn-outline {
             background: transparent;
             border: 2px solid var(--green-main);
             color: var(--green-main);
-            box-shadow: none;
         }
-
         .btn-outline:hover {
             background: var(--green-main);
             color: white;
         }
 
         /* Hero */
-        .hero {
-            padding: 60px 0 40px;
-        }
-
-        .hero-grid {
-            display: flex;
-            align-items: center;
-            gap: 48px;
-            flex-wrap: wrap;
-        }
-
-        .hero-content {
-            flex: 1;
-        }
-
-        .hero-content h1 {
-            font-size: 52px;
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 20px;
+        .hero { padding: 40px 0 30px; }
+        .hero-grid { display: flex; flex-direction: column; gap: 30px; }
+        .hero-content h1 { 
+            font-size: 38px; 
+            font-weight: 800; 
+            line-height: 1.2; 
+            margin-bottom: 16px; 
             background: linear-gradient(135deg, var(--green-deep), var(--yellow-accent));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
-
-        .hero-content p {
-            font-size: 18px;
-            color: var(--text-soft);
-            margin-bottom: 28px;
+        .hero-content p { font-size: 16px; color: var(--text-secondary); margin-bottom: 24px; }
+        .hero-img { 
+            background: var(--bg-hero); 
+            border-radius: 32px; 
+            padding: 40px; 
+            text-align: center;
+            transition: background 0.3s ease;
         }
-
-        .hero-img {
-            flex: 1;
-            border-radius: 48px;
-            overflow: hidden;
-            background: linear-gradient(145deg, var(--green-light), var(--yellow-soft));
-            min-height: 320px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 30px;
-        }
-
-        .hero-img i {
-            font-size: 160px;
-            color: var(--green-main);
-            opacity: 0.8;
-        }
+        .hero-img i { font-size: 100px; color: var(--green-main); }
 
         /* Калькулятор */
-        .calculator {
-            background: var(--green-light);
-            border-radius: 48px;
-            padding: 40px;
-            margin: 40px 0;
+        .calculator { 
+            background: var(--bg-secondary); 
+            border-radius: 32px; 
+            padding: 28px 20px; 
+            margin: 30px 0;
+            transition: background 0.3s ease;
         }
-
-        .calc-title {
-            text-align: center;
-            font-size: 32px;
-            margin-bottom: 24px;
-            color: var(--green-deep);
-        }
-
-        .calc-form {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-            margin-bottom: 24px;
-        }
-
-        .input-card {
-            background: white;
-            padding: 12px 24px;
-            border-radius: 60px;
-            display: flex;
-            align-items: center;
+        .calc-title { text-align: center; font-size: 26px; margin-bottom: 20px; color: var(--green-deep); }
+        .calc-form { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+        .input-card { 
+            background: var(--bg-card); 
+            padding: 12px 20px; 
+            border-radius: 60px; 
+            display: flex; 
+            align-items: center; 
             gap: 12px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: background 0.3s ease;
         }
-
-        .input-card i {
-            font-size: 22px;
-            color: var(--green-main);
-        }
-
-        .input-card input {
-            border: none;
-            outline: none;
-            font-size: 16px;
-            padding: 8px;
-            width: 100px;
+        .input-card i { font-size: 20px; color: var(--green-main); width: 28px; }
+        .input-card input { 
+            border: none; 
+            outline: none; 
+            font-size: 16px; 
+            padding: 8px; 
+            flex: 1; 
             font-weight: 500;
+            background: transparent;
+            color: var(--text-primary);
         }
-
-        .result-box {
+        .result-box { 
+            background: var(--bg-card); 
+            border-radius: 28px; 
+            padding: 20px; 
             text-align: center;
-            background: white;
-            border-radius: 40px;
-            padding: 24px;
-            margin-top: 20px;
+            transition: background 0.3s ease;
         }
-
-        .bmi-value {
-            font-size: 48px;
-            font-weight: 800;
-            color: var(--green-main);
-        }
+        .bmi-value { font-size: 44px; font-weight: 800; color: var(--green-main); }
 
         /* Программы */
-        .programs {
-            padding: 60px 0;
+        .section-title { text-align: center; font-size: 32px; color: var(--green-deep); margin-bottom: 12px; }
+        .section-sub { text-align: center; color: var(--text-secondary); margin-bottom: 30px; font-size: 15px; }
+        .program-grid { display: flex; flex-direction: column; gap: 24px; }
+        .program-card { 
+            background: var(--bg-card); 
+            border-radius: 28px; 
+            overflow: hidden; 
+            border: 1px solid var(--border-color);
+            transition: background 0.3s ease, border 0.3s ease;
         }
-
-        .section-title {
+        .program-header { 
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tips)); 
+            padding: 22px 20px; 
             text-align: center;
-            font-size: 38px;
-            margin-bottom: 16px;
-            color: var(--green-deep);
+            transition: background 0.3s ease;
         }
-
-        .section-sub {
-            text-align: center;
-            color: var(--text-soft);
-            max-width: 680px;
-            margin: 0 auto 40px;
+        .program-header i { font-size: 40px; color: var(--green-main); margin-bottom: 8px; }
+        .program-header h3 { font-size: 24px; color: var(--green-deep); }
+        .program-info { padding: 20px; }
+        .exercise-list { list-style: none; margin: 12px 0; }
+        .exercise-list li { 
+            padding: 10px 0; 
+            border-bottom: 1px solid var(--border-color); 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+            font-size: 15px;
+            transition: border-color 0.3s ease;
         }
-
-        .program-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 32px;
-            margin-top: 20px;
-        }
-
-        .program-card {
-            background: white;
-            border-radius: 32px;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
-            transition: 0.3s;
-            border: 1px solid var(--green-soft);
-        }
-
-        .program-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 40px rgba(107, 158, 90, 0.12);
-        }
-
-        .program-header {
-            background: linear-gradient(135deg, var(--green-light), var(--yellow-soft));
-            padding: 28px 24px;
-            text-align: center;
-        }
-
-        .program-header i {
-            font-size: 52px;
-            color: var(--green-main);
-            margin-bottom: 12px;
-        }
-
-        .program-header h3 {
-            font-size: 28px;
-            color: var(--green-deep);
-        }
-
-        .program-info {
-            padding: 24px;
-        }
-
-        .exercise-list {
-            list-style: none;
-            margin: 16px 0;
-        }
-
-        .exercise-list li {
-            padding: 10px 0;
-            border-bottom: 1px solid var(--green-soft);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .exercise-list li i {
-            width: 28px;
-            color: var(--yellow-accent);
-        }
-
-        .badge {
-            background: var(--yellow-warm);
-            color: var(--green-deep);
-            padding: 6px 14px;
-            border-radius: 40px;
-            font-size: 13px;
-            font-weight: 700;
-            display: inline-block;
-            margin-top: 16px;
+        .exercise-list li i { width: 26px; color: var(--yellow-accent); }
+        .badge { 
+            background: var(--yellow-soft); 
+            color: var(--green-deep); 
+            padding: 6px 14px; 
+            border-radius: 40px; 
+            font-size: 12px; 
+            font-weight: 700; 
+            display: inline-block; 
+            margin-top: 12px;
+            transition: background 0.3s ease;
         }
 
         /* Советы */
-        .tips {
-            background: var(--yellow-soft);
-            border-radius: 48px;
-            padding: 48px 32px;
-            margin: 40px 0;
+        .tips { 
+            background: var(--bg-tips); 
+            border-radius: 32px; 
+            padding: 32px 20px; 
+            margin: 30px 0;
+            transition: background 0.3s ease;
         }
-
-        .tips-grid {
-            display: flex;
-            gap: 28px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .tip-item {
-            background: white;
-            border-radius: 28px;
-            padding: 28px 24px;
-            flex: 1;
-            min-width: 220px;
+        .tips-grid { display: flex; flex-direction: column; gap: 16px; }
+        .tip-item { 
+            background: var(--bg-card); 
+            border-radius: 24px; 
+            padding: 20px; 
             text-align: center;
-            transition: 0.2s;
+            transition: background 0.3s ease;
+        }
+        .tip-item i { font-size: 36px; color: var(--yellow-accent); margin-bottom: 12px; }
+
+        .contact-block { 
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tips)); 
+            border-radius: 32px; 
+            padding: 32px 20px; 
+            text-align: center; 
+            margin: 30px 0;
+            transition: background 0.3s ease;
         }
 
-        .tip-item i {
-            font-size: 44px;
-            color: var(--yellow-accent);
-            margin-bottom: 16px;
+        footer { 
+            background: var(--bg-footer); 
+            color: var(--text-footer); 
+            text-align: center; 
+            padding: 28px 20px; 
+            margin-top: 20px; 
+            font-size: 13px;
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
-        .tip-item h4 {
-            font-size: 20px;
-            margin-bottom: 12px;
-            color: var(--green-deep);
+        .btn-group { display: flex; gap: 12px; flex-wrap: wrap; }
+        .btn-group .btn { flex: 1; }
+
+        /* Адаптивность */
+        @media (min-width: 768px) {
+            .hero-grid { flex-direction: row; }
+            .calc-form { flex-direction: row; }
+            .program-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+            .tips-grid { flex-direction: row; }
+            .btn-group .btn { width: auto; }
+            .btn { width: auto; }
         }
 
-        /* Контакт */
-        .contact-block {
-            background: linear-gradient(135deg, var(--green-light), var(--yellow-soft));
-            border-radius: 48px;
-            padding: 48px;
-            text-align: center;
-            margin: 40px 0;
-        }
-
-        footer {
-            background: var(--green-deep);
-            color: #E8F3E8;
-            text-align: center;
-            padding: 32px;
-            margin-top: 40px;
-        }
-
-        @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 36px;
-            }
-            .calculator {
-                padding: 24px;
-            }
-            .calc-form {
-                flex-direction: column;
-            }
-            .input-card {
-                justify-content: space-between;
-            }
-            .section-title {
-                font-size: 30px;
-            }
+        @media (max-width: 600px) {
+            .navbar { flex-direction: column; align-items: stretch; }
+            .nav-controls { justify-content: space-between; }
+            .nav-links { justify-content: center; }
+            .hero-content h1 { font-size: 30px; }
         }
     </style>
 </head>
@@ -415,14 +361,24 @@
         <nav class="navbar">
             <div class="logo">
                 <span class="logo-icon"><i class="fas fa-dumbbell"></i></span>
-                <span class="logo-text">WorkoutFlow</span>
+                <span class="logo-text" data-i18n="site-name">WorkoutFlow</span>
             </div>
-            <ul class="nav-links">
-                <li><a href="#home">Главная</a></li>
-                <li><a href="#programs">Тренировки</a></li>
-                <li><a href="#calculator">Калькулятор</a></li>
-                <li><a href="#contact">Контакты</a></li>
-            </ul>
+            <div class="nav-controls">
+                <ul class="nav-links">
+                    <li><a href="#home" data-i18n="nav-home">Главная</a></li>
+                    <li><a href="#programs" data-i18n="nav-programs">Тренировки</a></li>
+                    <li><a href="#calculator" data-i18n="nav-calc">Калькулятор</a></li>
+                </ul>
+                <!-- Кнопки управления -->
+                <button class="ctrl-btn" id="themeToggle" title="Сменить тему">
+                    <i class="fas fa-moon"></i>
+                    <span id="themeLabel" data-i18n="theme-dark">Тёмная</span>
+                </button>
+                <div style="display: flex; gap: 4px;">
+                    <button class="lang-btn active" data-lang="ru">RU</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
+            </div>
         </nav>
     </div>
 </header>
@@ -432,10 +388,12 @@
     <section id="home" class="hero">
         <div class="container hero-grid">
             <div class="hero-content">
-                <h1>Движение в гармонии</h1>
-                <p>WorkoutFlow — персональные тренировки для любого возраста и телосложения. Натуральные движения, забота о суставах и реальный прогресс.</p>
-                <a href="#programs" class="btn">Выбрать программу →</a>
-                <a href="#calculator" class="btn btn-outline" style="margin-left: 14px;">Узнать тип тела</a>
+                <h1 data-i18n="hero-title">Движение в гармонии</h1>
+                <p data-i18n="hero-desc">WorkoutFlow — тренировки для любого возраста. Жиросжигание, набор массы и мягкий фитнес.</p>
+                <div class="btn-group">
+                    <a href="#programs" class="btn" data-i18n="hero-btn-programs">Программы</a>
+                    <a href="#calculator" class="btn btn-outline" data-i18n="hero-btn-calc">Анализ тела</a>
+                </div>
             </div>
             <div class="hero-img">
                 <i class="fas fa-spa"></i>
@@ -443,10 +401,10 @@
         </div>
     </section>
 
-    <!-- Калькулятор ИМТ -->
+    <!-- Калькулятор -->
     <div class="container" id="calculator">
         <div class="calculator">
-            <h2 class="calc-title">🌿 Твой индекс формы</h2>
+            <h2 class="calc-title" data-i18n="calc-title">🌿 Твоя форма</h2>
             <div class="calc-form">
                 <div class="input-card">
                     <i class="fas fa-ruler"></i>
@@ -460,95 +418,89 @@
                     <i class="fas fa-calendar-alt"></i>
                     <input type="number" id="age" placeholder="Возраст" value="30">
                 </div>
-                <button id="calcBtn" class="btn">Рассчитать</button>
+                <button id="calcBtn" class="btn" data-i18n="calc-btn">Рассчитать</button>
             </div>
             <div class="result-box" id="bmiResult">
                 <div class="bmi-value" id="bmiNumber">—</div>
-                <div id="bmiDesc">Введите данные и нажмите "Рассчитать"</div>
+                <div id="bmiDesc" data-i18n="calc-placeholder">Введите данные</div>
             </div>
         </div>
     </div>
 
-    <!-- Программы тренировок -->
+    <!-- Программы -->
     <section id="programs" class="programs">
         <div class="container">
-            <h2 class="section-title">🍃 Программы WorkoutFlow</h2>
-            <p class="section-sub">Подбери свой ритм: жиросжигание, набор массы или мягкий фитнес для здоровья</p>
+            <h2 class="section-title" data-i18n="programs-title">🍃 Программы</h2>
+            <p class="section-sub" data-i18n="programs-sub">Выбери свой ритм</p>
             <div class="program-grid">
-                
-                <!-- Сжигание жира -->
+                <!-- Программа 1 -->
                 <div class="program-card">
                     <div class="program-header">
                         <i class="fas fa-fire"></i>
-                        <h3>Энергия + Жиросжигание</h3>
+                        <h3 data-i18n="prog1-title">Жиросжигание</h3>
                     </div>
                     <div class="program-info">
                         <ul class="exercise-list">
-                            <li><i class="fas fa-heartbeat"></i> Берпи — 12-15 раз</li>
-                            <li><i class="fas fa-person-walking"></i> Выпады с прыжком — 12 на ногу</li>
-                            <li><i class="fas fa-bicycle"></i> Велосипед (пресс) — 20 раз</li>
-                            <li><i class="fas fa-charging-station"></i> Скалолаз — 30 сек</li>
+                            <li><i class="fas fa-heartbeat"></i> <span data-i18n="prog1-ex1">Берпи — 12-15 раз</span></li>
+                            <li><i class="fas fa-person-walking"></i> <span data-i18n="prog1-ex2">Выпады с прыжком — 12 на ногу</span></li>
+                            <li><i class="fas fa-bicycle"></i> <span data-i18n="prog1-ex3">Велосипед (пресс) — 20 раз</span></li>
                         </ul>
-                        <span class="badge">⏱ 3-4 раза/неделю + кардио</span>
+                        <span class="badge" data-i18n="prog1-badge">3-4 раза в неделю</span>
                     </div>
                 </div>
-                
-                <!-- Набор массы -->
+                <!-- Программа 2 -->
                 <div class="program-card">
                     <div class="program-header">
                         <i class="fas fa-dumbbell"></i>
-                        <h3>Сила + Масса</h3>
+                        <h3 data-i18n="prog2-title">Набор массы</h3>
                     </div>
                     <div class="program-info">
                         <ul class="exercise-list">
-                            <li><i class="fas fa-dumbbell"></i> Приседания с весом — 4x8</li>
-                            <li><i class="fas fa-dumbbell"></i> Жим гантелей лёжа — 4x10</li>
-                            <li><i class="fas fa-hand-fist"></i> Тяга к поясу — 4x10</li>
-                            <li><i class="fas fa-weight-hanging"></i> Подтягивания / австралийские — макс</li>
+                            <li><i class="fas fa-dumbbell"></i> <span data-i18n="prog2-ex1">Приседания — 4x8</span></li>
+                            <li><i class="fas fa-dumbbell"></i> <span data-i18n="prog2-ex2">Жим гантелей — 4x10</span></li>
+                            <li><i class="fas fa-weight-hanging"></i> <span data-i18n="prog2-ex3">Подтягивания — макс</span></li>
                         </ul>
-                        <span class="badge">🏋️ 5 дней + белковое окно</span>
+                        <span class="badge" data-i18n="prog2-badge">5 дней в неделю</span>
                     </div>
                 </div>
-
-                <!-- Прогресс + Здоровье -->
+                <!-- Программа 3 -->
                 <div class="program-card">
                     <div class="program-header">
                         <i class="fas fa-leaf"></i>
-                        <h3>Гибкость + Долголетие</h3>
+                        <h3 data-i18n="prog3-title">Здоровье + гибкость</h3>
                     </div>
                     <div class="program-info">
                         <ul class="exercise-list">
-                            <li><i class="fas fa-spa"></i> Планка — 3×40 сек</li>
-                            <li><i class="fas fa-hand-peace"></i> Растяжка всего тела — 15 мин</li>
-                            <li><i class="fas fa-walking"></i> Ходьба в среднем темпе — 40 мин</li>
-                            <li><i class="fas fa-dumbbell"></i> Румынская тяга с резиной — 15 раз</li>
+                            <li><i class="fas fa-spa"></i> <span data-i18n="prog3-ex1">Планка — 3×40 сек</span></li>
+                            <li><i class="fas fa-hand-peace"></i> <span data-i18n="prog3-ex2">Растяжка — 15 мин</span></li>
+                            <li><i class="fas fa-walking"></i> <span data-i18n="prog3-ex3">Ходьба — 40 мин</span></li>
                         </ul>
-                        <span class="badge">🧘 Идеально для 40+ и для восстановления</span>
+                        <span class="badge" data-i18n="prog3-badge">Для всех возрастов</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Советы для прогресса -->
+    <!-- Советы -->
     <div class="container">
         <div class="tips">
-            <h2 style="text-align: center; margin-bottom: 32px; color: var(--green-deep);">📌 Путь к прогрессу</h2>
+            <h2 style="text-align: center; margin-bottom: 20px; color: var(--green-deep);" data-i18n="tips-title">📌 Советы</h2>
             <div class="tips-grid">
                 <div class="tip-item">
                     <i class="fas fa-apple-alt"></i>
-                    <h4>Питание под цель</h4>
-                    <p>Для жиросжигания — легкий дефицит, для массы — профицит 15%. Баланс БЖУ важен в любом возрасте.</p>
+                    <h4 data-i18n="tip1-title">Питание</h4>
+                    <p data-i18n="tip1-desc">Баланс БЖУ под цель</p>
                 </div>
                 <div class="tip-item">
                     <i class="fas fa-bed"></i>
-                    <h4>Восстановление</h4>
-                    <p>Сон 7-8 часов снижает кортизол и улучшает композицию тела. Отдых = прогресс.</p>
+                    <h4 data-i18n="tip2-title">Сон</h4>
+                    <p data-i18n="tip2-desc">7-8 часов для прогресса</p>
                 </div>
                 <div class="tip-item">
                     <i class="fas fa-chart-line"></i>
-                    <h4>Дневник тренировок</h4>
-                    <p>Записывай веса и повторения. Увеличивай нагрузку на 5-10% каждые 10-14 дней.</p>
+                    <h4 data-i18n="tip3-title">Прогрессия</h4>
+                    <p data-i18n="tip3-desc">+5% нагрузки каждые 2 недели</p>
                 </div>
             </div>
         </div>
@@ -558,10 +510,9 @@
     <section id="contact">
         <div class="container">
             <div class="contact-block">
-                <i class="fas fa-heart" style="font-size: 48px; color: var(--green-main); margin-bottom: 16px;"></i>
-                <h3 style="font-size: 32px; margin-bottom: 12px; color: var(--green-deep);">Начни своё течение</h3>
-                <p style="margin-bottom: 24px; max-width: 500px; margin-left: auto; margin-right: auto;">Получи бесплатный чек-лист «Как начать тренироваться после 30/40/50»</p>
-                <button class="btn" id="demoBtn">Забрать план →</button>
+                <i class="fas fa-heart" style="font-size: 40px; color: var(--green-main);"></i>
+                <h3 style="font-size: 26px; margin: 12px 0; color: var(--green-deep);" data-i18n="contact-title">Начни сегодня</h3>
+                <button class="btn" id="demoBtn" data-i18n="contact-btn">Получить план →</button>
             </div>
         </div>
     </section>
@@ -569,62 +520,214 @@
 
 <footer>
     <div class="container">
-        <p>💚 WorkoutFlow — тренировки в потоке. Забота о каждом теле.</p>
-        <p style="margin-top: 12px; font-size: 14px; opacity: 0.8;">Адаптивный сайт • Калькулятор формы • Упражнения для всех возрастов</p>
+        <p data-i18n="footer-text">💚 WorkoutFlow — тренировки в потоке</p>
+        <p style="margin-top: 8px; font-size: 12px;" data-i18n="footer-sub">Адаптивный сайт • Калькулятор ИМТ</p>
     </div>
 </footer>
 
 <script>
-    function calculateBMI() {
-        const heightCm = parseFloat(document.getElementById('height').value);
-        const weightKg = parseFloat(document.getElementById('weight').value);
-        const age = parseInt(document.getElementById('age').value);
+    // ========== ПЕРЕКЛЮЧЕНИЕ ТЕМЫ ==========
+    const themeToggle = document.getElementById('themeToggle');
+    const themeLabel = document.getElementById('themeLabel');
+    const htmlRoot = document.getElementById('html-root');
+    
+    // Проверяем сохранённую тему
+    let currentTheme = localStorage.getItem('theme') || 'light';
+    if (currentTheme === 'dark') {
+        htmlRoot.setAttribute('data-theme', 'dark');
+        themeLabel.textContent = 'Светлая';
+        themeToggle.innerHTML = '<i class="fas fa-sun"></i> <span id="themeLabel">Светлая</span>';
+    }
 
-        if (isNaN(heightCm) || isNaN(weightKg) || heightCm <= 0 || weightKg <= 0) {
-            document.getElementById('bmiNumber').innerText = 'Ошибка';
-            document.getElementById('bmiDesc').innerHTML = 'Введите корректные рост и вес.';
+    themeToggle.addEventListener('click', function() {
+        const isDark = htmlRoot.getAttribute('data-theme') === 'dark';
+        if (isDark) {
+            htmlRoot.removeAttribute('data-theme');
+            localStorage.setItem('theme', 'light');
+            themeLabel.textContent = 'Тёмная';
+            themeToggle.innerHTML = '<i class="fas fa-moon"></i> <span id="themeLabel">Тёмная</span>';
+        } else {
+            htmlRoot.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+            themeLabel.textContent = 'Светлая';
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i> <span id="themeLabel">Светлая</span>';
+        }
+    });
+
+    // ========== ПЕРЕКЛЮЧЕНИЕ ЯЗЫКА ==========
+    // Словарь переводов
+    const translations = {
+        ru: {
+            'site-name': 'WorkoutFlow',
+            'nav-home': 'Главная',
+            'nav-programs': 'Тренировки',
+            'nav-calc': 'Калькулятор',
+            'theme-dark': 'Тёмная',
+            'hero-title': 'Движение в гармонии',
+            'hero-desc': 'WorkoutFlow — тренировки для любого возраста. Жиросжигание, набор массы и мягкий фитнес.',
+            'hero-btn-programs': 'Программы',
+            'hero-btn-calc': 'Анализ тела',
+            'calc-title': '🌿 Твоя форма',
+            'calc-btn': 'Рассчитать',
+            'calc-placeholder': 'Введите данные',
+            'programs-title': '🍃 Программы',
+            'programs-sub': 'Выбери свой ритм',
+            'prog1-title': 'Жиросжигание',
+            'prog1-ex1': 'Берпи — 12-15 раз',
+            'prog1-ex2': 'Выпады с прыжком — 12 на ногу',
+            'prog1-ex3': 'Велосипед (пресс) — 20 раз',
+            'prog1-badge': '3-4 раза в неделю',
+            'prog2-title': 'Набор массы',
+            'prog2-ex1': 'Приседания — 4x8',
+            'prog2-ex2': 'Жим гантелей — 4x10',
+            'prog2-ex3': 'Подтягивания — макс',
+            'prog2-badge': '5 дней в неделю',
+            'prog3-title': 'Здоровье + гибкость',
+            'prog3-ex1': 'Планка — 3×40 сек',
+            'prog3-ex2': 'Растяжка — 15 мин',
+            'prog3-ex3': 'Ходьба — 40 мин',
+            'prog3-badge': 'Для всех возрастов',
+            'tips-title': '📌 Советы',
+            'tip1-title': 'Питание',
+            'tip1-desc': 'Баланс БЖУ под цель',
+            'tip2-title': 'Сон',
+            'tip2-desc': '7-8 часов для прогресса',
+            'tip3-title': 'Прогрессия',
+            'tip3-desc': '+5% нагрузки каждые 2 недели',
+            'contact-title': 'Начни сегодня',
+            'contact-btn': 'Получить план →',
+            'footer-text': '💚 WorkoutFlow — тренировки в потоке',
+            'footer-sub': 'Адаптивный сайт • Калькулятор ИМТ'
+        },
+        en: {
+            'site-name': 'WorkoutFlow',
+            'nav-home': 'Home',
+            'nav-programs': 'Programs',
+            'nav-calc': 'Calculator',
+            'theme-dark': 'Dark',
+            'hero-title': 'Movement in Harmony',
+            'hero-desc': 'WorkoutFlow — workouts for all ages. Fat burning, muscle building, and gentle fitness.',
+            'hero-btn-programs': 'Programs',
+            'hero-btn-calc': 'Body Analysis',
+            'calc-title': '🌿 Your Body Type',
+            'calc-btn': 'Calculate',
+            'calc-placeholder': 'Enter your data',
+            'programs-title': '🍃 Programs',
+            'programs-sub': 'Choose your rhythm',
+            'prog1-title': 'Fat Burning',
+            'prog1-ex1': 'Burpees — 12-15 reps',
+            'prog1-ex2': 'Jump lunges — 12 per leg',
+            'prog1-ex3': 'Bicycle crunch — 20 reps',
+            'prog1-badge': '3-4 times a week',
+            'prog2-title': 'Muscle Building',
+            'prog2-ex1': 'Squats — 4x8',
+            'prog2-ex2': 'Dumbbell press — 4x10',
+            'prog2-ex3': 'Pull-ups — max',
+            'prog2-badge': '5 days a week',
+            'prog3-title': 'Health + Flexibility',
+            'prog3-ex1': 'Plank — 3×40 sec',
+            'prog3-ex2': 'Stretching — 15 min',
+            'prog3-ex3': 'Walking — 40 min',
+            'prog3-badge': 'For all ages',
+            'tips-title': '📌 Tips',
+            'tip1-title': 'Nutrition',
+            'tip1-desc': 'Balance your macros',
+            'tip2-title': 'Sleep',
+            'tip2-desc': '7-8 hours for progress',
+            'tip3-title': 'Progression',
+            'tip3-desc': '+5% load every 2 weeks',
+            'contact-title': 'Start Today',
+            'contact-btn': 'Get Plan →',
+            'footer-text': '💚 WorkoutFlow — training in flow',
+            'footer-sub': 'Responsive site • BMI Calculator'
+        }
+    };
+
+    let currentLang = localStorage.getItem('lang') || 'ru';
+
+    // Функция обновления текста
+    function updateLanguage(lang) {
+        if (!translations[lang]) return;
+        
+        document.querySelectorAll('[data-i18n]').forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            if (translations[lang][key]) {
+                element.textContent = translations[lang][key];
+            }
+        });
+        
+        // Обновляем плейсхолдеры
+        document.querySelectorAll('input[data-i18n-placeholder]').forEach(input => {
+            const key = input.getAttribute('data-i18n-placeholder');
+            if (translations[lang][key]) {
+                input.placeholder = translations[lang][key];
+            }
+        });
+        
+        localStorage.setItem('lang', lang);
+        currentLang = lang;
+        
+        // Обновляем активную кнопку языка
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.lang === lang);
+        });
+    }
+
+    // Обработчики для кнопок языка
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const lang = this.dataset.lang;
+            updateLanguage(lang);
+        });
+    });
+
+    // Загружаем сохранённый язык
+    updateLanguage(currentLang);
+
+    // ========== КАЛЬКУЛЯТОР ИМТ ==========
+    function calculateBMI() {
+        const h = parseFloat(document.getElementById('height').value);
+        const w = parseFloat(document.getElementById('weight').value);
+        const age = parseInt(document.getElementById('age').value);
+        
+        if (isNaN(h) || isNaN(w) || h <= 0) {
+            document.getElementById('bmiNumber').innerText = '—';
+            document.getElementById('bmiDesc').textContent = currentLang === 'ru' ? 'Введите рост и вес' : 'Enter height and weight';
             return;
         }
-        const heightM = heightCm / 100;
-        const bmi = weightKg / (heightM * heightM);
-        const bmiRounded = bmi.toFixed(1);
-        document.getElementById('bmiNumber').innerText = bmiRounded;
-
-        let description = '';
-        let advice = '';
-
-        if (bmi < 18.5) {
-            description = '🌱 Гармоничное утончение';
-            advice = 'Рекомендация: программа "Сила + Масса". Добавьте калорийные, но полезные продукты.';
-        } else if (bmi >= 18.5 && bmi < 25) {
-            description = '✨ Идеальный баланс';
-            advice = 'Вы в отличной форме! Выбирайте любую программу под вашу цель.';
-        } else if (bmi >= 25 && bmi < 30) {
-            description = '🌿 Мягкое снижение веса';
-            advice = 'Программа "Энергия + Жиросжигание" + дефицит 300-400 ккал в день.';
+        const bmi = w / ((h/100)**2);
+        document.getElementById('bmiNumber').innerText = bmi.toFixed(1);
+        
+        let desc = '';
+        if (currentLang === 'ru') {
+            if (bmi < 18.5) desc = '🌱 Рекомендуем: набор массы';
+            else if (bmi < 25) desc = '✨ Отличная форма! Любая программа';
+            else if (bmi < 30) desc = '🔥 Программа: жиросжигание';
+            else desc = '🌊 Начните с гибкости + ходьбы';
+            if (age > 45) desc += ' • Уделите внимание суставам';
         } else {
-            description = '🌊 Особое внимание';
-            advice = 'Начните с "Гибкость + Долголетие", ходьбы и плавания. Обязательная консультация врача.';
+            if (bmi < 18.5) desc = '🌱 Recommended: muscle building';
+            else if (bmi < 25) desc = '✨ Great shape! Any program';
+            else if (bmi < 30) desc = '🔥 Program: fat burning';
+            else desc = '🌊 Start with flexibility + walking';
+            if (age > 45) desc += ' • Pay attention to joints';
         }
-
-        if (!isNaN(age) && age > 45) {
-            advice += ' Уделите внимание разминке и суставам — программа "Гибкость" идеальна.';
-        }
-        document.getElementById('bmiDesc').innerHTML = `<strong>${description}</strong><br>${advice}`;
+        document.getElementById('bmiDesc').textContent = desc;
     }
 
     document.getElementById('calcBtn').addEventListener('click', calculateBMI);
     window.addEventListener('load', calculateBMI);
 
+    // ========== ДЕМО-КНОПКА ==========
     document.getElementById('demoBtn').addEventListener('click', function() {
-        alert('🌿 Спасибо! PDF-план "WorkoutFlow: мягкий старт" придет на почту (демо-режим). На экзамене покажу готовность к интеграции!');
+        const msg = currentLang === 'ru' ? '🌿 План отправлен! (демо-режим)' : '🌿 Plan sent! (demo mode)';
+        alert(msg);
     });
 
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            if (href === "#" || href === "") return;
-            const target = document.querySelector(href);
+    // ========== ПЛАВНАЯ ПРОКРУТКА ==========
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', function(e) {
+            const target = document.querySelector(this.getAttribute('href'));
             if (target) {
                 e.preventDefault();
                 target.scrollIntoView({ behavior: 'smooth' });
